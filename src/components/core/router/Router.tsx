@@ -113,10 +113,9 @@ interface LinkProps {
   data?: RouteData;
   children: ReactNode;
   className?: string;
-  style?: React.CSSProperties;
 }
 
-export function Link({ to, data, children, className, style }: LinkProps) {
+export function Link({ to, data, children, className }: LinkProps) {
   const { navigate, currentPath } = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -131,7 +130,6 @@ export function Link({ to, data, children, className, style }: LinkProps) {
       href={to}
       onClick={handleClick}
       className={className}
-      style={style}
       data-active={isActive}
     >
       {children}

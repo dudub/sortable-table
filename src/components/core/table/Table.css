@@ -1,0 +1,136 @@
+/* Table Base Styles */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+/* Header Styles */
+.table-header {
+  background-color: var(--color-table-header);
+  color: var(--color-text-primary);
+  height: 45px;
+}
+
+.table-header-cell {
+  padding: 0;
+  vertical-align: center;
+  border-left: 1px solid var(--color-white);
+}
+
+.table-header-cell:first-child {
+  border-left: 0;
+}
+
+.table-header-cell:hover {
+  background: var(--blue-500);
+  cursor: pointer;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  outline: none;
+  text-transform: uppercase;
+}
+
+/* Cell Styles */
+.table-cell {
+  color: var(--color-text);
+  height: 45px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--blue-300);
+  text-align: left;
+  font-size: 12px;
+}
+
+/* Sort Button Styles */
+.sort-button {
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  transition: opacity 0.2s ease;
+  text-transform: uppercase;
+}
+
+.sort-button:hover {
+  opacity: 0.8;
+}
+
+.sort-button:focus {
+  outline: none;
+}
+
+.sort-icon {
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.sort-icon-neutral {
+  opacity: 0.6;
+}
+
+/* Search Input Styles */
+.search-container {
+  width: 100%;
+}
+
+.search-input {
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Row Styles */
+.data-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.data-table tbody tr:nth-child(even):hover {
+  background-color: #f1f5f9;
+}

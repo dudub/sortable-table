@@ -1,5 +1,6 @@
 .table-page-container {
   padding: 20px;
+  width: 80vw;
 }
 
 .table-nav {
@@ -59,9 +60,7 @@
 }
 
 .table-card {
-  background-color: var(--color-card-warning);
   padding: 15px;
-  border-radius: 4px;
 }
 
 .data-table {
@@ -70,16 +69,13 @@
   margin-top: 10px;
 }
 
-.table-header {
-  background-color: var(--color-table-header);
+/* Custom table cell styles for the new Table component */
+.url-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 13px;
 }
 
-.table-cell {
-  border: 1px solid var(--color-table-border);
-  padding: 8px;
-  text-align: left;
-}
-
-.table-cell:first-child {
-  text-align: left;
+.url-link:hover {
+  text-decoration: underline;
 }

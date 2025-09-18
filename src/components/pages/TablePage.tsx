@@ -1,5 +1,67 @@
 import { Link } from "../core/router/Router";
+import { Table } from "../core/table";
+import type { TableColumn } from "../core/table";
+import data from "../../data.json";
 import "./TablePage.css";
+
+type DataItem = {
+  id: number;
+  issueType: string;
+  severity: string;
+  component: string;
+  selector: string;
+  url: string;
+  description: string;
+  codeSnippet: string;
+  screenshot: string;
+};
+
+// Define columns configuration
+const columns: TableColumn<DataItem>[] = [
+  {
+    key: "id",
+    title: "No.",
+    sortable: true,
+  },
+  {
+    key: "issueType",
+    title: "Issue Type",
+    sortable: true,
+  },
+  {
+    key: "severity",
+    title: "Severity",
+    sortable: true,
+  },
+  {
+    key: "component",
+    title: "Component",
+    sortable: true,
+    searchable: false,
+  },
+  {
+    key: "selector",
+    title: "selector",
+    sortable: true,
+    searchable: true,
+  },
+  {
+    key: "url",
+    title: "URL",
+    sortable: true,
+    searchable: true,
+    render: (value: string) => (
+      <a
+        href={value}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="url-link"
+      >
+        {value}
+      </a>
+    ),
+  },
+];
 
 export function TablePage() {
   return (
@@ -13,37 +75,8 @@ export function TablePage() {
       </nav>
 
       <div className="table-card">
-        <h3>Sample Table Data</h3>
-        <table className="data-table">
-          <thead>
-            <tr className="table-header">
-              <th className="table-cell">ID</th>
-              <th className="table-cell">Name</th>
-              <th className="table-cell">Status</th>
-              <th className="table-cell">Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="table-cell">1</td>
-              <td className="table-cell">John Doe</td>
-              <td className="table-cell">Active</td>
-              <td className="table-cell">2024-01-15</td>
-            </tr>
-            <tr>
-              <td className="table-cell">2</td>
-              <td className="table-cell">Jane Smith</td>
-              <td className="table-cell">Inactive</td>
-              <td className="table-cell">2024-01-10</td>
-            </tr>
-            <tr>
-              <td className="table-cell">3</td>
-              <td className="table-cell">Bob Johnson</td>
-              <td className="table-cell">Active</td>
-              <td className="table-cell">2024-01-12</td>
-            </tr>
-          </tbody>
-        </table>
+        <h3>Accessibility Issues ({data.length} items)</h3>
+        <Table data={data as DataItem[]} columns={columns} />
       </div>
     </div>
   );
