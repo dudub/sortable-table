@@ -1,11 +1,7 @@
 import { Link } from "../core/router/Router";
-import { useRouter } from "../core/router/hooks";
 import "./TablePage.css";
 
 export function TablePage() {
-  const { getParams } = useRouter();
-  const urlParams = getParams();
-
   return (
     <div className="table-page-container">
       <h1>Table Page</h1>
@@ -15,15 +11,6 @@ export function TablePage() {
           ← Back to Home
         </Link>
       </nav>
-
-      {Object.keys(urlParams).length > 0 && (
-        <div className="params-card">
-          <h3>URL Parameters:</h3>
-          <pre className="params-code-block">
-            {JSON.stringify(urlParams, null, 2)}
-          </pre>
-        </div>
-      )}
 
       <div className="table-card">
         <h3>Sample Table Data</h3>
