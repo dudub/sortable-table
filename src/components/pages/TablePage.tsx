@@ -1,5 +1,6 @@
 import { Link } from '../core/router/Router';
 import { useRouter } from '../core/router/hooks';
+import './TablePage.css';
 
 
 interface TablePageProps {
@@ -11,62 +12,62 @@ export function TablePage({ routeData }: TablePageProps) {
   const urlParams = getParams();
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="table-page-container">
       <h1>Table Page</h1>
       
-      <nav style={{ marginBottom: '20px' }}>
-        <Link to="/" style={{ marginRight: '10px', padding: '8px 16px', backgroundColor: '#6c757d', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>
+      <nav className="table-nav">
+        <Link to="/" className="back-link">
           ← Back to Home
         </Link>
       </nav>
 
       {routeData && Object.keys(routeData).length > 0 && (
-        <div style={{ backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '4px', marginBottom: '20px' }}>
+        <div className="info-card">
           <h3>Route Data:</h3>
-          <pre style={{ backgroundColor: '#e9ecef', padding: '10px', borderRadius: '4px', overflow: 'auto' }}>
+          <pre className="code-block">
             {JSON.stringify(routeData, null, 2)}
           </pre>
         </div>
       )}
 
       {Object.keys(urlParams).length > 0 && (
-        <div style={{ backgroundColor: '#e7f3ff', padding: '15px', borderRadius: '4px', marginBottom: '20px' }}>
+        <div className="params-card">
           <h3>URL Parameters:</h3>
-          <pre style={{ backgroundColor: '#cce7ff', padding: '10px', borderRadius: '4px', overflow: 'auto' }}>
+          <pre className="params-code-block">
             {JSON.stringify(urlParams, null, 2)}
           </pre>
         </div>
       )}
 
-      <div style={{ backgroundColor: '#fff3cd', padding: '15px', borderRadius: '4px' }}>
+      <div className="table-card">
         <h3>Sample Table Data</h3>
-        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '10px' }}>
+        <table className="data-table">
           <thead>
-            <tr style={{ backgroundColor: '#f8f9fa' }}>
-              <th style={{ border: '1px solid #dee2e6', padding: '8px', textAlign: 'left' }}>ID</th>
-              <th style={{ border: '1px solid #dee2e6', padding: '8px', textAlign: 'left' }}>Name</th>
-              <th style={{ border: '1px solid #dee2e6', padding: '8px', textAlign: 'left' }}>Status</th>
-              <th style={{ border: '1px solid #dee2e6', padding: '8px', textAlign: 'left' }}>Created</th>
+            <tr className="table-header">
+              <th className="table-cell">ID</th>
+              <th className="table-cell">Name</th>
+              <th className="table-cell">Status</th>
+              <th className="table-cell">Created</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>1</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>John Doe</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>Active</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>2024-01-15</td>
+              <td className="table-cell">1</td>
+              <td className="table-cell">John Doe</td>
+              <td className="table-cell">Active</td>
+              <td className="table-cell">2024-01-15</td>
             </tr>
             <tr>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>2</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>Jane Smith</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>Inactive</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>2024-01-10</td>
+              <td className="table-cell">2</td>
+              <td className="table-cell">Jane Smith</td>
+              <td className="table-cell">Inactive</td>
+              <td className="table-cell">2024-01-10</td>
             </tr>
             <tr>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>3</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>Bob Johnson</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>Active</td>
-              <td style={{ border: '1px solid #dee2e6', padding: '8px' }}>2024-01-12</td>
+              <td className="table-cell">3</td>
+              <td className="table-cell">Bob Johnson</td>
+              <td className="table-cell">Active</td>
+              <td className="table-cell">2024-01-12</td>
             </tr>
           </tbody>
         </table>
