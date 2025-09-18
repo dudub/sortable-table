@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Color System - Centralized color management for the application
+   ========================================================================== */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #646cff;
+  --color-primary-hover: #535bf2;
+  --color-primary-light: #747bff;
+
+  /* Secondary Colors */
+  --color-secondary: #61dafb;
+  --color-secondary-alpha: #61dafbaa;
+
+  /* Warning/Alert Colors */
+  --color-warning: #ffc107;
+  --color-warning-hover: #e0a800;
+  --color-warning-light: #fff3cd;
+
+  /* Gray Scale */
+  --color-gray-50: #f9f9f9;
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #6c757d;
+  --color-gray-500: #888;
+  --color-gray-800: #1a1a1a;
+  --color-gray-900: #242424;
+
+  /* Text Colors */
+  --color-text-primary: #213547;
+  --color-text-primary-dark: rgba(255, 255, 255, 0.87);
+  --color-text-muted: #ccc;
+
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-primary-dark: #242424;
+  --color-bg-info: #e7f3ff;
+  --color-bg-info-light: #cce7ff;
+
+  /* Border Colors */
+  --color-border: #dee2e6;
+  --color-border-focus: #646cff;
+
+  /* State Colors */
+  --color-white: white;
+  --color-transparent: transparent;
+
+  /* Alpha Colors */
+  --color-primary-alpha: #646cffaa;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: rgba(255, 255, 255, 0.87);
+    --color-bg-primary: #242424;
+  }
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text-primary: #213547;
+    --color-bg-primary: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   Semantic Color Aliases - Use these for specific UI elements
+   ========================================================================== */
+
+:root {
+  /* Button Colors */
+  --color-button-primary: var(--color-warning);
+  --color-button-primary-hover: var(--color-warning-hover);
+  --color-button-secondary: var(--color-gray-400);
+  --color-button-default: var(--color-gray-800);
+  --color-button-default-light: var(--color-gray-50);
+
+  /* Link Colors */
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-hover);
+
+  /* Table Colors */
+  --color-table-header: var(--color-gray-100);
+  --color-table-border: var(--color-border);
+
+  /* Card/Panel Colors */
+  --color-card-info: var(--color-bg-info);
+  --color-card-info-accent: var(--color-bg-info-light);
+  --color-card-warning: var(--color-warning-light);
+  --color-card-neutral: var(--color-gray-100);
+  --color-card-code: var(--color-gray-200);
+
+  /* Logo Colors */
+  --color-logo-react: var(--color-secondary-alpha);
+  --color-logo-primary: var(--color-primary-alpha);
+}
