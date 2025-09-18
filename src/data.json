@@ -8,7 +8,7 @@
         "url": "https://www.zzzz.co.uk",
         "description": "The button is not keyboard accessible.",
         "codeSnippet": "<button>Click me</button>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://www.ricoh-imaging.co.jp/english/products/wg-6/ex/img/ex-pic03.jpg"
     },
     {
         "id": 3,
@@ -19,7 +19,7 @@
         "url": "https://www.zzzz.co.uk",
         "description": "Image button lacks accessible name.",
         "codeSnippet": "<img src='image.png' alt=''>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg"
     },
     {
         "id": 2,
@@ -30,7 +30,7 @@
         "url": "https://www.aaa.co.uk",
         "description": "Role is not explicitly defined.",
         "codeSnippet": "<div role='button'>Press</div>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://www.ricoh-imaging.co.jp/english/products/wg-6/ex/img/ex-pic08.jpg"
     },
     {
         "id": 16,
@@ -41,7 +41,7 @@
         "url": "https://www.zzzz.co.uk",
         "description": "Element is not focusable.",
         "codeSnippet": "<div>Not keyboard accessible</div>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://www.ricoh-imaging.co.jp/english/products/wg-6/ex/img/ex-pic10.jpg"
     },
     {
         "id": 8,
@@ -52,7 +52,7 @@
         "url": "https://www.fff.co.uk",
         "description": "Missing tabindex on a non-interactive element.",
         "codeSnippet": "<div tabindex='0'>Focusable</div>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://www.ricoh-imaging.co.jp/english/products/wg-6/ex/img/ex-pic06.jpg"
     },
     {
         "id": 9,
@@ -63,6 +63,6 @@
         "url": "https://www.aaa.co.uk",
         "description": "Text color does not meet contrast ratio standards.",
         "codeSnippet": "<p style='color: #ccc;'>Low contrast text</p>",
-        "screenshot": "https://via.placeholder.com/150"
+        "screenshot": "https://www.ricoh-imaging.co.jp/english/products/wg-6/ex/img/ex-pic01.jpg"
     }
 ]

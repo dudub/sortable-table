@@ -5,7 +5,7 @@ import type { TableColumn } from "../core/table";
 import data from "../../data.json";
 import "./TablePage.css";
 
-type DataItem = {
+export type DataItem = {
   id: number;
   issueType: string;
   severity: string;
@@ -78,7 +78,7 @@ export function TablePage() {
 
       <nav className="table-nav">
         <Link to="/" className="back-link">
-          ← Back to Home
+          Home
         </Link>
       </nav>
 

@@ -1,6 +1,6 @@
 .table-page-container {
   padding: 20px;
-  width: 80vw;
+  width: 90vw;
 }
 
 .table-nav {
@@ -35,6 +35,8 @@
 }
 
 .table-card {
+  overflow-x: auto;
+  width: 100%;
   padding: 15px;
 }
 

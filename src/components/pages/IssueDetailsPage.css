@@ -27,36 +27,52 @@
 }
 
 .issue-details-content {
-  background: white;
-  border-radius: 8px;
+  background: var(--color-white);
+  color: var(--color-text);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: 20px;
 }
 
-.issue-details-content h1 {
-  margin-bottom: 2rem;
-  color: var(--color-text-primary, #333);
+.issue-details-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.list-item.column {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.list-item > img {
+  border: 1px solid var(--color-gray-200);;
+}
+
+pre {
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-200);
+  padding: 15px;
+  border-radius: 5px;
+  margin: 0;
+  min-width: 50%;
 }
 
 .json-display {
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
   border-radius: 4px;
   padding: 1rem;
   overflow-x: auto;
 }
 
-.json-display pre {
-  margin: 0;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #333;
-}
-
 .error-message {
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;
   border-radius: 4px;
@@ -64,5 +80,5 @@
 }
 
 .error-message p {
-  margin: 0.5rem 0;
+  margin: 5px 0;
 }
