@@ -16,13 +16,6 @@ export function TablePage() {
         </Link>
       </nav>
 
-      {/*{routeData && Object.keys(routeData).length > 0 && (*/}
-      {/*  <div className="info-card">*/}
-      {/*    <h3>Route Data:</h3>*/}
-      {/*    <pre className="code-block">{JSON.stringify(routeData, null, 2)}</pre>*/}
-      {/*  </div>*/}
-      {/*)}*/}
-
       {Object.keys(urlParams).length > 0 && (
         <div className="params-card">
           <h3>URL Parameters:</h3>
