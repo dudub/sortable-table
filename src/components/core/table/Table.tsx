@@ -1,15 +1,31 @@
+import React from "react";
 import type { TableProps, TableColumn } from "./types";
 import { useTableSort, useTableSearch } from "./hooks";
+import cn from "clsx";
 import "./Table.css";
 
-export function Table<T>({ data, columns, className = "" }: TableProps<T>) {
+export function Table<T extends { id: string | number }>({
+  data,
+  columns,
+  onRowClick = () => {},
+  className = "",
+  withSelectedRowId,
+}: TableProps<T>) {
   const { sortState, sortedData, toggleSort } = useTableSort(data);
   const { searchState, filteredData, updateSearch } =
     useTableSearch(sortedData);
+  const [selectedRowId, setSelectedRowId] = React.useState<
+    number | string | undefined
+  >(withSelectedRowId);
+
+  const rowClickHandler = (row: T) => {
+    setSelectedRowId(row.id);
+    onRowClick(row);
+  };
 
   const renderSortIcon = (columnKey: string) => {
     if (sortState.column !== columnKey) {
-      return <span className="sort-icon sort-icon-neutral">↕</span>;
+      return <span className="sort-icon">↕</span>;
     }
 
     return (
@@ -76,7 +92,13 @@ export function Table<T>({ data, columns, className = "" }: TableProps<T>) {
       </thead>
       <tbody>
         {filteredData.map((row, index) => (
-          <tr key={index}>
+          <tr
+            key={index}
+            onClick={() => rowClickHandler(row)}
+            className={cn("table-row", {
+              ["selected"]: row.id === selectedRowId,
+            })}
+          >
             {columns.map((column) => renderCell(column, row))}
           </tr>
         ))}

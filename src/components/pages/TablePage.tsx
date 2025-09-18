@@ -64,6 +64,10 @@ const columns: TableColumn<DataItem>[] = [
 ];
 
 export function TablePage() {
+  const onRowClick = (row: DataItem) => {
+    alert(`Row clicked: ${JSON.stringify(row, null, 2)}`);
+  };
+
   return (
     <div className="table-page-container">
       <h1>Table Page</h1>
@@ -76,7 +80,11 @@ export function TablePage() {
 
       <div className="table-card">
         <h3>Accessibility Issues ({data.length} items)</h3>
-        <Table data={data as DataItem[]} columns={columns} />
+        <Table
+          data={data as DataItem[]}
+          columns={columns}
+          onRowClick={onRowClick}
+        />
       </div>
     </div>
   );

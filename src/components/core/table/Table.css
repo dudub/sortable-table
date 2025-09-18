@@ -25,7 +25,6 @@
 
 .table-header-cell:hover {
   background: var(--blue-500);
-  cursor: pointer;
 }
 
 .header-content {
@@ -53,6 +52,10 @@
   border-bottom: 1px solid var(--blue-300);
   text-align: left;
   font-size: 12px;
+}
+
+.table-row:focus, .table-row.selected {
+  background-color: var(--blue-100);
 }
 
 /* Sort Button Styles */
@@ -90,10 +93,6 @@
   height: 16px;
 }
 
-.sort-icon-neutral {
-  opacity: 0.6;
-}
-
 /* Search Input Styles */
 .search-container {
   width: 100%;
@@ -119,18 +118,18 @@
 }
 
 /* Row Styles */
-.data-table tbody tr {
-  transition: background-color 0.2s ease;
-}
+/*.data-table tbody tr {*/
+/*  transition: background-color 0.2s ease;*/
+/*}*/
 
-.data-table tbody tr:hover {
-  background-color: #f9fafb;
-}
+/*.data-table tbody tr:hover {*/
+/*  background-color: #f9fafb;*/
+/*}*/
 
-.data-table tbody tr:nth-child(even) {
-  background-color: #f8fafc;
-}
+/*.data-table tbody tr:nth-child(even) {*/
+/*  background-color: #f8fafc;*/
+/*}*/
 
-.data-table tbody tr:nth-child(even):hover {
-  background-color: #f1f5f9;
-}
+/*.data-table tbody tr:nth-child(even):hover {*/
+/*  background-color: #f1f5f9;*/
+/*}*/

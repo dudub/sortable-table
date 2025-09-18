@@ -34,31 +34,6 @@
   margin-top: 0;
 }
 
-.code-block {
-  background-color: var(--color-card-code);
-  padding: 10px;
-  border-radius: 4px;
-  overflow: auto;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-
-.params-card {
-  background-color: var(--color-card-info);
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-.params-code-block {
-  background-color: var(--color-card-info-accent);
-  padding: 10px;
-  border-radius: 4px;
-  overflow: auto;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-
 .table-card {
   padding: 15px;
 }
@@ -69,9 +44,7 @@
   margin-top: 10px;
 }
 
-/* Custom table cell styles for the new Table component */
 .url-link {
-  color: #2563eb;
   text-decoration: none;
   font-size: 13px;
 }

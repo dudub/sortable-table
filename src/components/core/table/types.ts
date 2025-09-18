@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 export interface TableColumn<T = any> {
   key: keyof T;
@@ -9,7 +9,7 @@ export interface TableColumn<T = any> {
   className?: string;
 }
 
-export type SortDirection = 'asc' | 'desc' | null;
+export type SortDirection = "asc" | "desc" | null;
 
 export interface SortState {
   column: string | null;
@@ -20,8 +20,10 @@ export interface SearchState {
   [columnKey: string]: string;
 }
 
-export interface TableProps<T = any> {
+export interface TableProps<T extends { id: string | number }> {
   data: T[];
   columns: TableColumn<T>[];
+  onRowClick?: (row: T) => void;
+  withSelectedRowId?: number | string;
   className?: string;
 }
