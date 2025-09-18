@@ -1,6 +1,6 @@
-import { Link } from "../core/router/Router";
 import { useRouter } from "../core/router/hooks";
 import { Table } from "../core/table";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import type { TableColumn } from "../core/table";
 import data from "../../data.json";
 import "./TablePage.css";
@@ -75,12 +75,12 @@ export function TablePage() {
   return (
     <div className="table-page-container">
       <h1>Table Page</h1>
-
-      <nav className="table-nav">
-        <Link to="/" className="back-link">
-          Home
-        </Link>
-      </nav>
+      <Breadcrumbs
+        links={[
+          { label: "Home", href: "/" },
+          { label: "Issues Table", href: `/table` },
+        ]}
+      />
 
       <div className="table-card">
         <h3>Accessibility Issues ({data.length} items)</h3>

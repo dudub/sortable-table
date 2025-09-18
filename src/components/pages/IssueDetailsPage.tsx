@@ -1,14 +1,18 @@
-import { Link } from "../core/router/Router";
-import "./IssueDetailsPage.css";
+import React from "react";
 import type { DataItem } from "./TablePage";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 import data from "../../data.json";
+import "./IssueDetailsPage.css";
 
 interface IssueDetailsPageProps {
   routeData: DataItem;
   params: Record<string, string>;
 }
 
-export function IssueDetailsPage({ routeData, params }: IssueDetailsPageProps) {
+export const IssueDetailsPage: React.FC<IssueDetailsPageProps> = ({
+  routeData,
+  params,
+}) => {
   const { id } = params;
 
   const issueData =
@@ -19,11 +23,13 @@ export function IssueDetailsPage({ routeData, params }: IssueDetailsPageProps) {
   return (
     <div className="issue-details-container">
       <h1>Issue Details</h1>
-      <nav className="issue-details-nav">
-        <Link to={`/table?selectedId=${id}`} className="back-link">
-          ← Back to Table
-        </Link>
-      </nav>
+      <Breadcrumbs
+        links={[
+          { label: "Home", href: "/" },
+          { label: "Issues Table", href: `/table?selectedId=${id}` },
+          { label: `Issue #${id}`, href: `/table/details/${id}` },
+        ]}
+      />
 
       {issueData ? (
         <div className="issue-details-content">
@@ -94,4 +100,4 @@ export function IssueDetailsPage({ routeData, params }: IssueDetailsPageProps) {
       )}
     </div>
   );
-}
+};
