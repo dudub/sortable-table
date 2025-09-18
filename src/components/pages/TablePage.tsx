@@ -1,34 +1,27 @@
-import { Link } from '../core/router/Router';
-import { useRouter } from '../core/router/hooks';
-import './TablePage.css';
+import { Link } from "../core/router/Router";
+import { useRouter } from "../core/router/hooks";
+import "./TablePage.css";
 
-
-interface TablePageProps {
-  routeData?: Record<string, any>;
-}
-
-export function TablePage({ routeData }: TablePageProps) {
+export function TablePage() {
   const { getParams } = useRouter();
   const urlParams = getParams();
 
   return (
     <div className="table-page-container">
       <h1>Table Page</h1>
-      
+
       <nav className="table-nav">
         <Link to="/" className="back-link">
           ← Back to Home
         </Link>
       </nav>
 
-      {routeData && Object.keys(routeData).length > 0 && (
-        <div className="info-card">
-          <h3>Route Data:</h3>
-          <pre className="code-block">
-            {JSON.stringify(routeData, null, 2)}
-          </pre>
-        </div>
-      )}
+      {/*{routeData && Object.keys(routeData).length > 0 && (*/}
+      {/*  <div className="info-card">*/}
+      {/*    <h3>Route Data:</h3>*/}
+      {/*    <pre className="code-block">{JSON.stringify(routeData, null, 2)}</pre>*/}
+      {/*  </div>*/}
+      {/*)}*/}
 
       {Object.keys(urlParams).length > 0 && (
         <div className="params-card">
