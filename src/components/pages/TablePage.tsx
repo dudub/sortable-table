@@ -1,4 +1,5 @@
 import { Link } from "../core/router/Router";
+import { useRouter } from "../core/router/hooks";
 import { Table } from "../core/table";
 import type { TableColumn } from "../core/table";
 import data from "../../data.json";
@@ -64,8 +65,11 @@ const columns: TableColumn<DataItem>[] = [
 ];
 
 export function TablePage() {
+  const { navigate, getParams } = useRouter();
+  const { selectedId } = getParams();
+
   const onRowClick = (row: DataItem) => {
-    alert(`Row clicked: ${JSON.stringify(row, null, 2)}`);
+    navigate(`/table/details/${row.id}`, row);
   };
 
   return (
@@ -84,6 +88,9 @@ export function TablePage() {
           data={data as DataItem[]}
           columns={columns}
           onRowClick={onRowClick}
+          withSelectedRowId={
+            selectedId !== undefined ? Number(selectedId) : undefined
+          }
         />
       </div>
     </div>

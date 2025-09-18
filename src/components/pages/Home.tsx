@@ -14,7 +14,7 @@ export function Home() {
           onClick={() => navigate("/table", {})}
           className="navigate-button"
         >
-          Go to Table with Data
+          Go to Issues Table
         </button>
       </div>
     </div>

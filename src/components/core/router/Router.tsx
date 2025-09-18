@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import type { RouteData, RouterState } from "./types";
 import { RouterContext } from "./context";
-import { useRouter } from "./hooks";
+import { useRouter, matchPath } from "./hooks";
 
 interface RouterProps {
   children: ReactNode;
@@ -100,14 +100,23 @@ export function Route({
 }: RouteProps) {
   const { currentPath, routeData } = useRouter();
 
-  const isMatch = exact ? currentPath === path : currentPath.startsWith(path);
+  let isMatch = false;
+  let params: Record<string, string> = {};
+
+  if (path.includes(":")) {
+    const matchResult = matchPath(path, currentPath);
+    isMatch = matchResult.match;
+    params = matchResult.params;
+  } else {
+    // Static path
+    isMatch = exact ? currentPath === path : currentPath.startsWith(path);
+  }
 
   if (!isMatch) return null;
 
-  return <Component routeData={routeData} />;
+  return <Component routeData={routeData} params={params} />;
 }
 
-// Link component for navigation
 interface LinkProps {
   to: string;
   data?: RouteData;
@@ -144,7 +153,6 @@ interface SwitchProps {
 export function Switch({ children }: SwitchProps) {
   const { currentPath } = useRouter();
 
-  // Find the first matching route
   const childrenArray = React.Children.toArray(children);
 
   for (const child of childrenArray) {
@@ -153,9 +161,15 @@ export function Switch({ children }: SwitchProps) {
         path: string;
         exact?: boolean;
       };
-      const isMatch = exact
-        ? currentPath === path
-        : currentPath.startsWith(path);
+
+      let isMatch = false;
+
+      if (path.includes(":")) {
+        const matchResult = matchPath(path, currentPath);
+        isMatch = matchResult.match;
+      } else {
+        isMatch = exact ? currentPath === path : currentPath.startsWith(path);
+      }
 
       if (isMatch) {
         return child;
