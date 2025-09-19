@@ -1,4 +1,3 @@
-import React from 'react';
 import type { TableProps } from './types';
 import { useTableSort, useTableSearch } from './hooks';
 import { TableHeader } from './TableHeader';
@@ -15,15 +14,6 @@ export const Table = <T extends { id: string | number }>({
   const { sortState, sortedData, toggleSort } = useTableSort(data);
   const { searchState, filteredData, updateSearch } =
     useTableSearch(sortedData);
-
-  const [selectedRowId, setSelectedRowId] = React.useState<
-    number | string | undefined
-  >(withSelectedRowId);
-
-  const rowClickHandler = (row: T) => {
-    setSelectedRowId(row.id);
-    onRowClick(row);
-  };
 
   return (
     <table className="data-table">
@@ -45,18 +35,18 @@ export const Table = <T extends { id: string | number }>({
         {filteredData.map((row) => (
           <tr
             key={row.id}
-            onClick={() => rowClickHandler(row)}
+            onClick={() => onRowClick(row)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                rowClickHandler(row);
+                onRowClick(row);
               }
             }}
             className={cn('table-row', {
-              ['selected']: row.id === selectedRowId,
+              ['selected']: row.id === withSelectedRowId,
             })}
             tabIndex={0}
-            aria-selected={row.id === selectedRowId}
+            aria-selected={row.id === withSelectedRowId}
           >
             {columns.map((column) => (
               <TableCell key={String(column.key)} column={column} row={row} />

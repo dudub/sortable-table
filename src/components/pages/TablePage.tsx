@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from '../core/router/hooks';
 import { Table } from '../core/table';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -68,7 +69,12 @@ export function TablePage() {
   const { navigate, getParams } = useRouter();
   const { selectedId } = getParams();
 
+  const [selectedRowId, setSelectedRowId] = useState<
+    number | string | undefined
+  >(selectedId);
+
   const onRowClick = (row: DataItem) => {
+    setSelectedRowId(row.id);
     navigate(`/issues/${row.id}`, row);
   };
 
@@ -89,7 +95,7 @@ export function TablePage() {
           columns={columns}
           onRowClick={onRowClick}
           withSelectedRowId={
-            selectedId !== undefined ? Number(selectedId) : undefined
+            selectedRowId !== undefined ? Number(selectedRowId) : undefined
           }
         />
       </div>
