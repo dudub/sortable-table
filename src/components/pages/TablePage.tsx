@@ -69,16 +69,16 @@ export function TablePage() {
   const { selectedId } = getParams();
 
   const onRowClick = (row: DataItem) => {
-    navigate(`/table/details/${row.id}`, row);
+    navigate(`/issues/${row.id}`, row);
   };
 
   return (
     <div className="table-page-container">
-      <h1>Table Page</h1>
+      <h1>Issues Page</h1>
       <Breadcrumbs
         links={[
           { label: "Home", href: "/" },
-          { label: "Issues Table", href: `/table` },
+          { label: "Issues", href: `/issues` },
         ]}
       />
 

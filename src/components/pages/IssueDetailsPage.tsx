@@ -26,8 +26,8 @@ export const IssueDetailsPage: React.FC<IssueDetailsPageProps> = ({
       <Breadcrumbs
         links={[
           { label: "Home", href: "/" },
-          { label: "Issues Table", href: `/table?selectedId=${id}` },
-          { label: `Issue #${id}`, href: `/table/details/${id}` },
+          { label: "Issues", href: `/issues?selectedId=${id}` },
+          { label: `Issue #${id}`, href: `/issues/${id}` },
         ]}
       />
 
@@ -58,7 +58,7 @@ export const IssueDetailsPage: React.FC<IssueDetailsPageProps> = ({
             </li>
             <li>
               <div className="list-item">
-                <strong>URL:</strong>{" "}
+                <strong>URL:</strong>
                 <a
                   href={issueData.url}
                   target="_blank"

@@ -11,7 +11,7 @@ export function Home() {
 
       <div className="button-container">
         <button
-          onClick={() => navigate("/table", {})}
+          onClick={() => navigate("/issues", {})}
           className="navigate-button"
         >
           Go to Issues Table
