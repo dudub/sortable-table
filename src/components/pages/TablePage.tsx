@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRouter } from '../core/router/hooks';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Table } from '../core/table';
 import { Breadcrumbs } from '../core/breadcrumbs/Breadcrumbs';
 import type { TableColumn } from '../core/table';
@@ -66,16 +66,17 @@ const columns: TableColumn<DataItem>[] = [
 ];
 
 export function TablePage() {
-  const { navigate, getParams } = useRouter();
-  const { selectedId } = getParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedId = searchParams.get('selectedId');
 
   const [selectedRowId, setSelectedRowId] = useState<
     number | string | undefined
-  >(selectedId);
+  >(selectedId || undefined);
 
   const onRowClick = (row: DataItem) => {
     setSelectedRowId(row.id);
-    navigate(`/issues/${row.id}`, row);
+    navigate(`/issues/${row.id}`, { state: row });
   };
 
   return (
@@ -94,7 +95,7 @@ export function TablePage() {
           data={data as DataItem[]}
           columns={columns}
           onRowClick={onRowClick}
-          withSelectedRowId={
+          selectedRowId={
             selectedRowId !== undefined ? Number(selectedRowId) : undefined
           }
         />

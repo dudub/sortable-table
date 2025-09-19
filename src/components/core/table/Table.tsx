@@ -9,7 +9,7 @@ export const Table = <T extends { id: string | number }>({
   data,
   columns,
   onRowClick = () => {},
-  withSelectedRowId,
+  selectedRowId,
 }: TableProps<T>) => {
   const { sortState, sortedData, toggleSort } = useTableSort(data);
   const { searchState, filteredData, updateSearch } =
@@ -43,10 +43,10 @@ export const Table = <T extends { id: string | number }>({
               }
             }}
             className={cn('table-row', {
-              ['selected']: row.id === withSelectedRowId,
+              ['selected']: row.id === selectedRowId,
             })}
             tabIndex={0}
-            aria-selected={row.id === withSelectedRowId}
+            aria-selected={row.id === selectedRowId}
           >
             {columns.map((column) => (
               <TableCell key={String(column.key)} column={column} row={row} />

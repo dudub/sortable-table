@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Breadcrumbs.css';
 
 interface BreadcrumbLink {
@@ -19,7 +20,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ links }) => {
       <ol className="breadcrumb-list">
         {links.map((link, index) => (
           <li key={link.id} className="breadcrumb-item">
-            <a href={link.href}>{link.label}</a>
+            <Link to={link.href}>{link.label}</Link>
             {index < links.length - 1 && <span>{'>'}</span>}
           </li>
         ))}

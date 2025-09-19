@@ -1,19 +1,14 @@
 import React from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import type { DataItem } from './TablePage';
 import { Breadcrumbs } from '../core/breadcrumbs/Breadcrumbs';
 import data from '../../data.json';
 import './IssueDetailsPage.css';
 
-interface IssueDetailsPageProps {
-  routeData: DataItem;
-  params: Record<string, string>;
-}
-
-export const IssueDetailsPage: React.FC<IssueDetailsPageProps> = ({
-  routeData,
-  params,
-}) => {
-  const { id } = params;
+export const IssueDetailsPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const routeData = location.state as DataItem;
 
   const issueData =
     routeData && Object.keys(routeData).length > 0

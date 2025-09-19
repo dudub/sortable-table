@@ -1,8 +1,8 @@
-import { useRouter } from '../core/router/hooks';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 export function Home() {
-  const { navigate } = useRouter();
+  const navigate = useNavigate();
 
   return (
     <div className="home-container" role="main" aria-labelledby="home-title">
@@ -11,7 +11,7 @@ export function Home() {
 
       <div className="button-container" role="navigation" aria-label="Main navigation">
         <button
-          onClick={() => navigate('/issues', {})}
+          onClick={() => navigate('/issues')}
           className="navigate-button"
           aria-describedby="home-description"
           aria-label="Navigate to Issues Table page"

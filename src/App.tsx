@@ -1,20 +1,20 @@
 import './App.css';
-import { Router, Route, Switch } from './components/core/router/Router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './components/pages/Home';
 import { TablePage } from './components/pages/TablePage';
 import { IssueDetailsPage } from './components/pages/IssueDetailsPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="app">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/issues/:id" component={IssueDetailsPage} />
-          <Route path="/issues" component={TablePage} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/issues" element={<TablePage />} />
+          <Route path="/issues/:id" element={<IssueDetailsPage />} />
+        </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
