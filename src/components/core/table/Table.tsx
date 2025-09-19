@@ -1,15 +1,17 @@
 import React from 'react';
-import type { TableProps, TableColumn } from './types';
+import type { TableProps } from './types';
 import { useTableSort, useTableSearch } from './hooks';
+import { TableHeader } from './TableHeader';
 import cn from 'clsx';
+import { TableCell } from './TableCell';
 import './Table.css';
 
-export function Table<T extends { id: string | number }>({
+export const Table = <T extends { id: string | number }>({
   data,
   columns,
   onRowClick = () => {},
   withSelectedRowId,
-}: TableProps<T>) {
+}: TableProps<T>) => {
   const { sortState, sortedData, toggleSort } = useTableSort(data);
   const { searchState, filteredData, updateSearch } =
     useTableSearch(sortedData);
@@ -23,81 +25,21 @@ export function Table<T extends { id: string | number }>({
     onRowClick(row);
   };
 
-  const renderSortIcon = (columnKey: string) => {
-    if (sortState.column !== columnKey) {
-      return <span className="sort-icon">↕</span>;
-    }
-
-    return (
-      <span className="sort-icon">
-        {sortState.direction === 'asc' ? '↑' : '↓'}
-      </span>
-    );
-  };
-
-  const renderHeaderCell = (column: TableColumn<T>) => {
-    const { key, title, sortable, searchable } = column;
-    const columnKey = String(key);
-
-    return (
-      <th
-        key={columnKey}
-        className={cn('table-cell table-header-cell', column.className)}
-      >
-        <div className="header-content">
-          <div className="header-title">
-            {sortable ? (
-              <button
-                className="sort-button"
-                onClick={() => toggleSort(columnKey)}
-                type="button"
-                aria-label={`Sort by ${title} ${
-                  sortState.column === columnKey
-                    ? sortState.direction === 'asc'
-                      ? 'descending'
-                      : 'ascending'
-                    : 'ascending'
-                }`}
-              >
-                {title}
-                {renderSortIcon(columnKey)}
-              </button>
-            ) : (
-              title
-            )}
-          </div>
-          {searchable && (
-            <div className="search-container">
-              <input
-                id={`search-${columnKey}`}
-                type="text"
-                className="search-input"
-                value={searchState[columnKey] || ''}
-                onChange={(e) => updateSearch(columnKey, e.target.value)}
-                aria-label={`Search ${title}`}
-              />
-            </div>
-          )}
-        </div>
-      </th>
-    );
-  };
-
-  const renderCell = (column: TableColumn<T>, row: T) => {
-    const { key, render } = column;
-    const value = row[key];
-
-    return (
-      <td key={String(key)} className={cn('table-cell', column.className)}>
-        {render ? render(value, row) : `${value}`}
-      </td>
-    );
-  };
-
   return (
     <table className="data-table">
       <thead>
-        <tr className="table-header">{columns.map(renderHeaderCell)}</tr>
+        <tr className="table-header">
+          {columns.map((column) => (
+            <TableHeader
+              key={String(column.key)}
+              column={column}
+              sortState={sortState}
+              searchState={searchState}
+              onToggleSort={toggleSort}
+              onUpdateSearch={updateSearch}
+            />
+          ))}
+        </tr>
       </thead>
       <tbody>
         {filteredData.map((row) => (
@@ -116,10 +58,12 @@ export function Table<T extends { id: string | number }>({
             tabIndex={0}
             aria-selected={row.id === selectedRowId}
           >
-            {columns.map((column) => renderCell(column, row))}
+            {columns.map((column) => (
+              <TableCell key={String(column.key)} column={column} row={row} />
+            ))}
           </tr>
         ))}
       </tbody>
     </table>
   );
-}
+};
