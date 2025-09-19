@@ -4,7 +4,7 @@
         "issueType": "Interactable Role",
         "severity": "Critical",
         "component": "ABC",
-        "selector": ".foo > #bar",
+        "selector": ".foo > #bar .foo > #bar.foo > #bar.foo > #bar.foo > #bar.foo > #bar.foo > #bar.foo > #bar",
         "url": "https://www.zzzz.co.uk",
         "description": "The button is not keyboard accessible.",
         "codeSnippet": "<button>Click me</button>",
