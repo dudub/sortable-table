@@ -1,6 +1,6 @@
 import React from 'react';
 import type { DataItem } from './TablePage';
-import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs';
 import data from '../../data.json';
 import './IssueDetailsPage.css';
 

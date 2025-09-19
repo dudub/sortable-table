@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from '../core/router/hooks';
 import { Table } from '../core/table';
-import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs';
 import type { TableColumn } from '../core/table';
 import data from '../../data.json';
 import './TablePage.css';
