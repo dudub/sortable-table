@@ -8,12 +8,12 @@ export function Table<T extends { id: string | number }>({
   data,
   columns,
   onRowClick = () => {},
-  className = '',
   withSelectedRowId,
 }: TableProps<T>) {
   const { sortState, sortedData, toggleSort } = useTableSort(data);
   const { searchState, filteredData, updateSearch } =
     useTableSearch(sortedData);
+
   const [selectedRowId, setSelectedRowId] = React.useState<
     number | string | undefined
   >(withSelectedRowId);
@@ -95,7 +95,7 @@ export function Table<T extends { id: string | number }>({
   };
 
   return (
-    <table className={`data-table ${className}`}>
+    <table className="data-table">
       <thead>
         <tr className="table-header">{columns.map(renderHeaderCell)}</tr>
       </thead>

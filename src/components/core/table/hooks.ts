@@ -1,6 +1,11 @@
 import { useState, useMemo } from 'react';
 import type { SortState, SearchState } from './types';
 
+function isNumber(val?: string | number): boolean {
+  if (val == null) return false;
+  return typeof val === 'number';
+}
+
 export function useTableSort<T>(data: T[]) {
   const [sortState, setSortState] = useState<SortState>({
     column: null,
@@ -30,33 +35,36 @@ export function useTableSort<T>(data: T[]) {
     }
 
     return [...data].sort((a, b) => {
-      const aValue = a[sortState.column as keyof T];
-      const bValue = b[sortState.column as keyof T];
+      const aValue = a[sortState.column as keyof T] as
+        | string
+        | number
+        | null
+        | undefined;
+      const bValue = b[sortState.column as keyof T] as
+        | string
+        | number
+        | null
+        | undefined;
 
       // Handle null/undefined values
       if (aValue == null && bValue == null) return 0;
       if (aValue == null) return sortState.direction === 'asc' ? 1 : -1;
       if (bValue == null) return sortState.direction === 'asc' ? -1 : 1;
 
-      // Determine if both values are numbers
-      const aIsNumber = typeof aValue === 'number' || (!isNaN(Number(aValue)) && !isNaN(parseFloat(String(aValue))));
-      const bIsNumber = typeof bValue === 'number' || (!isNaN(Number(bValue)) && !isNaN(parseFloat(String(bValue))));
+      const isANumber = isNumber(aValue);
+      const isBNumber = isNumber(bValue);
 
       let result = 0;
 
-      if (aIsNumber && bIsNumber) {
-        // Both are numbers - use numeric comparison
-        const aNum = typeof aValue === 'number' ? aValue : parseFloat(String(aValue));
-        const bNum = typeof bValue === 'number' ? bValue : parseFloat(String(bValue));
-        result = aNum - bNum;
-      } else {
-        // At least one is a string - use string comparison
-        const aStr = String(aValue).toLowerCase();
-        const bStr = String(bValue).toLowerCase();
-        if (aStr < bStr) result = -1;
-        else if (aStr > bStr) result = 1;
-        else result = 0;
+      if (isANumber && isBNumber) {
+        result = Number(aValue) - Number(bValue) > 0 ? 1 : -1;
+        return sortState.direction === 'asc' ? result : -result;
       }
+
+      const aStr = String(aValue).toLowerCase();
+      const bStr = String(bValue).toLowerCase();
+      if (aStr < bStr) result = -1;
+      if (aStr > bStr) result = 1;
 
       return sortState.direction === 'asc' ? result : -result;
     });

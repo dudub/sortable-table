@@ -25,5 +25,4 @@ export interface TableProps<T extends { id: string | number }> {
   columns: TableColumn<T>[];
   onRowClick?: (row: T) => void;
   withSelectedRowId?: number | string;
-  className?: string;
 }

@@ -16,10 +16,7 @@
 }
 
 .url-link {
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.url-link:hover {
   text-decoration: underline;
+  font-size: 13px;
+  color: inherit;
 }
