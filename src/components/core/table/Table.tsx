@@ -51,6 +51,13 @@ export function Table<T extends { id: string | number }>({
                 className="sort-button"
                 onClick={() => toggleSort(columnKey)}
                 type="button"
+                aria-label={`Sort by ${title} ${
+                  sortState.column === columnKey
+                    ? sortState.direction === 'asc'
+                      ? 'descending'
+                      : 'ascending'
+                    : 'ascending'
+                }`}
               >
                 {title}
                 {renderSortIcon(columnKey)}
@@ -62,10 +69,12 @@ export function Table<T extends { id: string | number }>({
           {searchable && (
             <div className="search-container">
               <input
+                id={`search-${columnKey}`}
                 type="text"
                 className="search-input"
                 value={searchState[columnKey] || ''}
                 onChange={(e) => updateSearch(columnKey, e.target.value)}
+                aria-label={`Search ${title}`}
               />
             </div>
           )}
@@ -91,13 +100,21 @@ export function Table<T extends { id: string | number }>({
         <tr className="table-header">{columns.map(renderHeaderCell)}</tr>
       </thead>
       <tbody>
-        {filteredData.map((row, index) => (
+        {filteredData.map((row) => (
           <tr
-            key={index}
+            key={row.id}
             onClick={() => rowClickHandler(row)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                rowClickHandler(row);
+              }
+            }}
             className={cn('table-row', {
               ['selected']: row.id === selectedRowId,
             })}
+            tabIndex={0}
+            aria-selected={row.id === selectedRowId}
           >
             {columns.map((column) => renderCell(column, row))}
           </tr>

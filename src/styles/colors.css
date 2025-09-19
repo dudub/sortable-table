@@ -17,6 +17,13 @@
     --blue-300: #607085;
     --blue-500: #435060;
 
+    /* Red/Pink Shades */
+    --pink-100: #f8d7da;
+    --pink-300: #f5c6cb;
+    --pink-500: #f1b0b7;
+    --pink-700: #d9534f;
+    --pink-900: #c82333;
+
     /* Warning/Alert Colors */
     --color-warning: #ffc107;
     --color-warning-hover: #e0a800;

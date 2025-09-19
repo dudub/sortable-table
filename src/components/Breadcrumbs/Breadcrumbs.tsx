@@ -2,6 +2,7 @@ import React from 'react';
 import './Breadcrumbs.css';
 
 interface BreadcrumbLink {
+  id: string;
   label: string;
   href: string;
 }
@@ -17,7 +18,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ links }) => {
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb-list">
         {links.map((link, index) => (
-          <li className="breadcrumb-item">
+          <li key={link.id} className="breadcrumb-item">
             <a href={link.href}>{link.label}</a>
             {index < links.length - 1 && <span>{'>'}</span>}
           </li>

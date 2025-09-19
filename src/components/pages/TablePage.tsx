@@ -77,8 +77,8 @@ export function TablePage() {
       <h1>Issues Page</h1>
       <Breadcrumbs
         links={[
-          { label: 'Home', href: '/' },
-          { label: 'Issues', href: '/issues' },
+          { id: '1', label: 'Home', href: '/' },
+          { id: '2', label: 'Issues', href: '/issues' },
         ]}
       />
 

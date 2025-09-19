@@ -5,14 +5,16 @@ export function Home() {
   const { navigate } = useRouter();
 
   return (
-    <div className="home-container">
-      <h1>Home Page</h1>
-      <p>Welcome to the Sortable Table App</p>
+    <div className="home-container" role="main" aria-labelledby="home-title">
+      <h1 id="home-title">Home Page</h1>
+      <p id="home-description">Welcome to the Sortable Table App</p>
 
-      <div className="button-container">
+      <div className="button-container" role="navigation" aria-label="Main navigation">
         <button
           onClick={() => navigate('/issues', {})}
           className="navigate-button"
+          aria-describedby="home-description"
+          aria-label="Navigate to Issues Table page"
         >
           Go to Issues Table
         </button>
