@@ -1,9 +1,9 @@
-import { useRouter } from "../core/router/hooks";
-import { Table } from "../core/table";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import type { TableColumn } from "../core/table";
-import data from "../../data.json";
-import "./TablePage.css";
+import { useRouter } from '../core/router/hooks';
+import { Table } from '../core/table';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import type { TableColumn } from '../core/table';
+import data from '../../data.json';
+import './TablePage.css';
 
 export type DataItem = {
   id: number;
@@ -20,35 +20,35 @@ export type DataItem = {
 // Define columns configuration
 const columns: TableColumn<DataItem>[] = [
   {
-    key: "id",
-    title: "No.",
+    key: 'id',
+    title: 'No.',
     sortable: true,
   },
   {
-    key: "issueType",
-    title: "Issue Type",
+    key: 'issueType',
+    title: 'Issue Type',
     sortable: true,
   },
   {
-    key: "severity",
-    title: "Severity",
+    key: 'severity',
+    title: 'Severity',
     sortable: true,
   },
   {
-    key: "component",
-    title: "Component",
+    key: 'component',
+    title: 'Component',
     sortable: true,
     searchable: false,
   },
   {
-    key: "selector",
-    title: "selector",
+    key: 'selector',
+    title: 'selector',
     sortable: true,
     searchable: true,
   },
   {
-    key: "url",
-    title: "URL",
+    key: 'url',
+    title: 'URL',
     sortable: true,
     searchable: true,
     render: (value: string) => (
@@ -77,8 +77,8 @@ export function TablePage() {
       <h1>Issues Page</h1>
       <Breadcrumbs
         links={[
-          { label: "Home", href: "/" },
-          { label: "Issues", href: `/issues` },
+          { label: 'Home', href: '/' },
+          { label: 'Issues', href: '/issues' },
         ]}
       />
 

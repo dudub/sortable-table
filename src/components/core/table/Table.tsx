@@ -1,14 +1,14 @@
-import React from "react";
-import type { TableProps, TableColumn } from "./types";
-import { useTableSort, useTableSearch } from "./hooks";
-import cn from "clsx";
-import "./Table.css";
+import React from 'react';
+import type { TableProps, TableColumn } from './types';
+import { useTableSort, useTableSearch } from './hooks';
+import cn from 'clsx';
+import './Table.css';
 
 export function Table<T extends { id: string | number }>({
   data,
   columns,
   onRowClick = () => {},
-  className = "",
+  className = '',
   withSelectedRowId,
 }: TableProps<T>) {
   const { sortState, sortedData, toggleSort } = useTableSort(data);
@@ -30,7 +30,7 @@ export function Table<T extends { id: string | number }>({
 
     return (
       <span className="sort-icon">
-        {sortState.direction === "asc" ? "↑" : "↓"}
+        {sortState.direction === 'asc' ? '↑' : '↓'}
       </span>
     );
   };
@@ -42,7 +42,7 @@ export function Table<T extends { id: string | number }>({
     return (
       <th
         key={columnKey}
-        className={`table-cell table-header-cell ${column.className || ""}`}
+        className={cn('table-cell table-header-cell', column.className)}
       >
         <div className="header-content">
           <div className="header-title">
@@ -64,7 +64,7 @@ export function Table<T extends { id: string | number }>({
               <input
                 type="text"
                 className="search-input"
-                value={searchState[columnKey] || ""}
+                value={searchState[columnKey] || ''}
                 onChange={(e) => updateSearch(columnKey, e.target.value)}
               />
             </div>
@@ -79,7 +79,7 @@ export function Table<T extends { id: string | number }>({
     const value = row[key];
 
     return (
-      <td key={String(key)} className={`table-cell ${column.className || ""}`}>
+      <td key={String(key)} className={cn('table-cell', column.className)}>
         {render ? render(value, row) : `${value}`}
       </td>
     );
@@ -95,8 +95,8 @@ export function Table<T extends { id: string | number }>({
           <tr
             key={index}
             onClick={() => rowClickHandler(row)}
-            className={cn("table-row", {
-              ["selected"]: row.id === selectedRowId,
+            className={cn('table-row', {
+              ['selected']: row.id === selectedRowId,
             })}
           >
             {columns.map((column) => renderCell(column, row))}

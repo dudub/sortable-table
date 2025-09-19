@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import type { SortState, SearchState } from "./types";
+import { useState, useMemo } from 'react';
+import type { SortState, SearchState } from './types';
 
 export function useTableSort<T>(data: T[]) {
   const [sortState, setSortState] = useState<SortState>({
@@ -10,16 +10,16 @@ export function useTableSort<T>(data: T[]) {
   const toggleSort = (columnKey: string) => {
     setSortState((prev) => {
       if (prev.column !== columnKey) {
-        return { column: columnKey, direction: "asc" };
+        return { column: columnKey, direction: 'asc' };
       }
 
       switch (prev.direction) {
-        case "asc":
-          return { column: columnKey, direction: "desc" };
-        case "desc":
+        case 'asc':
+          return { column: columnKey, direction: 'desc' };
+        case 'desc':
           return { column: null, direction: null };
         default:
-          return { column: columnKey, direction: "asc" };
+          return { column: columnKey, direction: 'asc' };
       }
     });
   };
@@ -35,8 +35,8 @@ export function useTableSort<T>(data: T[]) {
 
       // Handle null/undefined values
       if (aValue == null && bValue == null) return 0;
-      if (aValue == null) return sortState.direction === "asc" ? 1 : -1;
-      if (bValue == null) return sortState.direction === "asc" ? -1 : 1;
+      if (aValue == null) return sortState.direction === 'asc' ? 1 : -1;
+      if (bValue == null) return sortState.direction === 'asc' ? -1 : 1;
 
       // Determine if both values are numbers
       const aIsNumber = typeof aValue === 'number' || (!isNaN(Number(aValue)) && !isNaN(parseFloat(String(aValue))));
@@ -58,7 +58,7 @@ export function useTableSort<T>(data: T[]) {
         else result = 0;
       }
 
-      return sortState.direction === "asc" ? result : -result;
+      return sortState.direction === 'asc' ? result : -result;
     });
   }, [data, sortState]);
 
@@ -81,7 +81,7 @@ export function useTableSearch<T>(data: T[]) {
 
   const filteredData = useMemo(() => {
     const activeFilters = Object.entries(searchState).filter(
-      ([, value]) => value.trim() !== "",
+      ([, value]) => value.trim() !== '',
     );
 
     if (activeFilters.length === 0) {

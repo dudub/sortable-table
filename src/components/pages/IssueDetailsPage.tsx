@@ -1,8 +1,8 @@
-import React from "react";
-import type { DataItem } from "./TablePage";
-import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
-import data from "../../data.json";
-import "./IssueDetailsPage.css";
+import React from 'react';
+import type { DataItem } from './TablePage';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import data from '../../data.json';
+import './IssueDetailsPage.css';
 
 interface IssueDetailsPageProps {
   routeData: DataItem;
@@ -25,8 +25,8 @@ export const IssueDetailsPage: React.FC<IssueDetailsPageProps> = ({
       <h1>Issue Details</h1>
       <Breadcrumbs
         links={[
-          { label: "Home", href: "/" },
-          { label: "Issues", href: `/issues?selectedId=${id}` },
+          { label: 'Home', href: '/' },
+          { label: 'Issues', href: `/issues?selectedId=${id}` },
           { label: `Issue #${id}`, href: `/issues/${id}` },
         ]}
       />

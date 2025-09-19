@@ -1,5 +1,5 @@
-import { useRouter } from "../core/router/hooks";
-import "./Home.css";
+import { useRouter } from '../core/router/hooks';
+import './Home.css';
 
 export function Home() {
   const { navigate } = useRouter();
@@ -11,7 +11,7 @@ export function Home() {
 
       <div className="button-container">
         <button
-          onClick={() => navigate("/issues", {})}
+          onClick={() => navigate('/issues', {})}
           className="navigate-button"
         >
           Go to Issues Table

@@ -1,5 +1,5 @@
-import React from "react";
-import "./Breadcrumbs.css";
+import React from 'react';
+import './Breadcrumbs.css';
 
 interface BreadcrumbLink {
   label: string;
@@ -19,7 +19,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ links }) => {
         {links.map((link, index) => (
           <li className="breadcrumb-item">
             <a href={link.href}>{link.label}</a>
-            {index < links.length - 1 && <span>{">"}</span>}
+            {index < links.length - 1 && <span>{'>'}</span>}
           </li>
         ))}
       </ol>

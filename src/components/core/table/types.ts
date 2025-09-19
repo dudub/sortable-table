@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export interface TableColumn<T = any> {
   key: keyof T;
@@ -9,7 +9,7 @@ export interface TableColumn<T = any> {
   className?: string;
 }
 
-export type SortDirection = "asc" | "desc" | null;
+export type SortDirection = 'asc' | 'desc' | null;
 
 export interface SortState {
   column: string | null;

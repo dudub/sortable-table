@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import type { RouterState } from "./types";
-import { RouterContext } from "./context";
+import { useContext } from 'react';
+import type { RouterState } from './types';
+import { RouterContext } from './context';
 
 export function useRouter(): RouterState {
   const context = useContext(RouterContext);
   if (!context) {
-    throw new Error("useRouter must be used within a Router component");
+    throw new Error('useRouter must be used within a Router component');
   }
   return context;
 }
@@ -15,8 +15,8 @@ export function matchPath(
   pattern: string,
   path: string,
 ): { match: boolean; params: Record<string, string> } {
-  const patternParts = pattern.split("/");
-  const pathParts = path.split("/");
+  const patternParts = pattern.split('/');
+  const pathParts = path.split('/');
 
   if (patternParts.length !== pathParts.length) {
     return { match: false, params: {} };
@@ -28,7 +28,7 @@ export function matchPath(
     const patternPart = patternParts[i];
     const pathPart = pathParts[i];
 
-    if (patternPart.startsWith(":")) {
+    if (patternPart.startsWith(':')) {
       // This is a parameter
       const paramName = patternPart.slice(1);
       params[paramName] = pathPart;

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import type { ReactNode } from "react";
-import type { RouteData, RouterState } from "./types";
-import { RouterContext } from "./context";
-import { useRouter, matchPath } from "./hooks";
+import React, { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
+import type { RouteData, RouterState } from './types';
+import { RouterContext } from './context';
+import { useRouter, matchPath } from './hooks';
 
 interface RouterProps {
   children: ReactNode;
   basePath?: string;
 }
 
-export function Router({ children, basePath = "" }: RouterProps) {
+export function Router({ children, basePath = '' }: RouterProps) {
   const [currentPath, setCurrentPath] = useState(() => {
     const path = window.location.pathname;
-    return basePath ? path.replace(basePath, "") : path;
+    return basePath ? path.replace(basePath, '') : path;
   });
 
   const [routeData, setRouteData] = useState<RouteData>({});
@@ -25,8 +25,8 @@ export function Router({ children, basePath = "" }: RouterProps) {
 
     // Update browser history with data
     window.history.pushState(
-      { path, data: data ? JSON.stringify(data) : "{}" },
-      "",
+      { path, data: data ? JSON.stringify(data) : '{}' },
+      '',
       fullPath,
     );
   };
@@ -44,7 +44,7 @@ export function Router({ children, basePath = "" }: RouterProps) {
     const handlePopState = (event: PopStateEvent) => {
       if (event.state) {
         const { path, data } = event.state;
-        setCurrentPath(path || "/");
+        setCurrentPath(path || '/');
         try {
           setRouteData(data ? JSON.parse(data) : {});
         } catch {
@@ -53,8 +53,8 @@ export function Router({ children, basePath = "" }: RouterProps) {
       } else {
         // Handle direct URL access or page refresh
         const path = window.location.pathname;
-        const cleanPath = basePath ? path.replace(basePath, "") : path;
-        setCurrentPath(cleanPath || "/");
+        const cleanPath = basePath ? path.replace(basePath, '') : path;
+        setCurrentPath(cleanPath || '/');
         setRouteData({});
       }
     };
@@ -62,16 +62,16 @@ export function Router({ children, basePath = "" }: RouterProps) {
     // Set initial state in history if it doesn't exist
     if (!window.history.state) {
       window.history.replaceState(
-        { path: currentPath, data: "{}" },
-        "",
+        { path: currentPath, data: '{}' },
+        '',
         window.location.href,
       );
     }
 
-    window.addEventListener("popstate", handlePopState);
+    window.addEventListener('popstate', handlePopState);
 
     return () => {
-      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, [basePath, currentPath]);
 
@@ -103,7 +103,7 @@ export function Route({
   let isMatch = false;
   let params: Record<string, string> = {};
 
-  if (path.includes(":")) {
+  if (path.includes(':')) {
     const matchResult = matchPath(path, currentPath);
     isMatch = matchResult.match;
     params = matchResult.params;
@@ -164,7 +164,7 @@ export function Switch({ children }: SwitchProps) {
 
       let isMatch = false;
 
-      if (path.includes(":")) {
+      if (path.includes(':')) {
         const matchResult = matchPath(path, currentPath);
         isMatch = matchResult.match;
       } else {
