@@ -18,7 +18,6 @@ export type DataItem = {
   screenshot: string;
 };
 
-// Define columns configuration
 const columns: TableColumn<DataItem>[] = [
   {
     key: 'id',
