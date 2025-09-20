@@ -8,42 +8,32 @@
     --color-primary-hover: #535bf2;
     --color-primary-light: #747bff;
 
-    /* Secondary Colors */
-    --color-secondary: #61dafb;
-    --color-secondary-alpha: #61dafbaa;
-
-    /* Blue Shades */
-    --blue-100: #d1d9e6;
-    --blue-300: #607085;
-    --blue-500: #435060;
-
-    /* Red/Pink Shades */
-    --pink-100: #f8d7da;
-    --pink-300: #f5c6cb;
-    --pink-500: #f1b0b7;
-    --pink-700: #d9534f;
-    --pink-900: #c82333;
-
     /* Warning/Alert Colors */
     --color-warning: #ffc107;
     --color-warning-hover: #e0a800;
     --color-warning-light: #fff3cd;
 
+    /* Blue Shades - Used for table styling */
+    --blue-100: #d1d9e6;
+    --blue-300: #607085;
+    --blue-500: #435060;
+
+    /* Pink/Error Shades - Used for error messages */
+    --pink-100: #f8d7da;
+    --pink-300: #f5c6cb;
+    --pink-900: #c82333;
+
     /* Gray Scale */
     --color-gray-50: #f9f9f9;
     --color-gray-100: #f8f9fa;
     --color-gray-200: #e9ecef;
-    --color-gray-300: #dee2e6;
     --color-gray-400: #6c757d;
-    --color-gray-500: #888;
     --color-gray-800: #1a1a1a;
-    --color-gray-900: #242424;
 
     /* Text Colors */
     --color-text: #131516;
     --color-text-primary: #131516;
     --color-text-primary-dark: rgba(255, 255, 255, 0.87);
-    --color-text-muted: #ccc;
 
     /* Background Colors */
     --color-bg-primary: #ffffff;
@@ -52,16 +42,16 @@
     --color-bg-info-light: #cce7ff;
 
     /* Border Colors */
-    --color-border: #dee2e6;
     --color-border-focus: #646cff;
 
     /* State Colors */
     --color-white: white;
     --color-transparent: transparent;
-
-    /* Alpha Colors */
-    --color-primary-alpha: #646cffaa;
 }
+
+/* ==========================================================================
+   Theme Support - Light/Dark Mode
+   ========================================================================== */
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
@@ -87,7 +77,6 @@
     /* Button Colors */
     --color-button-primary: var(--color-warning);
     --color-button-primary-hover: var(--color-warning-hover);
-    --color-button-secondary: var(--color-gray-400);
     --color-button-default: var(--color-gray-800);
     --color-button-default-light: var(--color-gray-50);
 
@@ -98,11 +87,18 @@
     /* Table Colors */
     --color-table-header: var(--blue-300);
     --color-table-border: var(--blue-500);
+    --color-table-row-selected: var(--blue-100);
+    --color-table-row-focus: var(--blue-500);
 
     /* Card/Panel Colors */
+    --color-card-neutral: var(--color-gray-100);
     --color-card-info: var(--color-bg-info);
     --color-card-info-accent: var(--color-bg-info-light);
     --color-card-warning: var(--color-warning-light);
-    --color-card-neutral: var(--color-gray-100);
     --color-card-code: var(--color-gray-200);
+
+    /* Error/Alert Colors */
+    --color-error-bg: var(--pink-100);
+    --color-error-border: var(--pink-300);
+    --color-error-text: var(--pink-900);
 }

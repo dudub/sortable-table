@@ -8,7 +8,7 @@ import './Table.css';
 export const Table = <T extends { id: string | number }>({
   data,
   columns,
-  onRowClick,
+  onRowClick = noop,
   selectedRowId,
 }: TableProps<T>) => {
   const { sortState, sortedData, toggleSort } = useTableSort({ data });
@@ -36,13 +36,11 @@ export const Table = <T extends { id: string | number }>({
         {filteredData.map((row) => (
           <tr
             key={row.id}
-            onClick={onRowClick ? () => onRowClick(row) : undefined}
+            onClick={() => onRowClick(row)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                if (onRowClick) {
-                  onRowClick(row);
-                }
+                onRowClick(row);
               }
             }}
             className={cn('table-row', {
@@ -60,3 +58,4 @@ export const Table = <T extends { id: string | number }>({
     </table>
   );
 };
+const noop = () => {};
