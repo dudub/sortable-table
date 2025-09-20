@@ -1,10 +1,6 @@
 import { useState, useMemo } from 'react';
 import type { SortState, SearchState } from './types';
-
-const isNumber = (val?: string | number): boolean => {
-  if (val == null) return false;
-  return typeof val === 'number';
-};
+import { compareValues } from '../../helpers';
 
 export const useTableSort = <T>({ data }: { data: T[] }) => {
   const [sortState, setSortState] = useState<SortState>({
@@ -36,34 +32,10 @@ export const useTableSort = <T>({ data }: { data: T[] }) => {
     }
 
     return [...data].sort((a, b) => {
-      const aValue = a[sortState.column as keyof T] as
-        | string
-        | number
-        | null
-        | undefined;
-      const bValue = b[sortState.column as keyof T] as
-        | string
-        | number
-        | null
-        | undefined;
+      const aValue = a[sortState.column as keyof T];
+      const bValue = b[sortState.column as keyof T];
 
-      // Handle null/undefined values
-      if (aValue == null && bValue == null) return 0;
-      if (aValue == null) return sortState.direction === 'asc' ? 1 : -1;
-      if (bValue == null) return sortState.direction === 'asc' ? -1 : 1;
-
-      let result = 0;
-
-      if (isNumber(aValue) && isNumber(bValue)) {
-        result = Number(aValue) - Number(bValue) > 0 ? 1 : -1;
-        return sortState.direction === 'asc' ? result : -result;
-      }
-
-      const aStr = String(aValue).toLowerCase();
-      const bStr = String(bValue).toLowerCase();
-      if (aStr < bStr) result = -1;
-      if (aStr > bStr) result = 1;
-
+      const result = compareValues(aValue, bValue);
       return sortState.direction === 'asc' ? result : -result;
     });
   }, [data, sortState]);
