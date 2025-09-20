@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import type { SortState, SearchState } from './types';
 
-function isNumber(val?: string | number): boolean {
+const isNumber = (val?: string | number): boolean => {
   if (val == null) return false;
   return typeof val === 'number';
-}
+};
 
-export function useTableSort<T>(data: T[]) {
+export const useTableSort = <T>({ data }: { data: T[] }) => {
   const [sortState, setSortState] = useState<SortState>({
     column: null,
     direction: null,
@@ -18,14 +18,15 @@ export function useTableSort<T>(data: T[]) {
         return { column: columnKey, direction: 'asc' };
       }
 
-      switch (prev.direction) {
-        case 'asc':
-          return { column: columnKey, direction: 'desc' };
-        case 'desc':
-          return { column: null, direction: null };
-        default:
-          return { column: columnKey, direction: 'asc' };
+      if (prev.direction === 'asc') {
+        return { column: columnKey, direction: 'desc' };
       }
+
+      if (prev.direction === 'desc') {
+        return { column: null, direction: null };
+      }
+
+      return { column: columnKey, direction: 'asc' };
     });
   };
 
@@ -51,12 +52,9 @@ export function useTableSort<T>(data: T[]) {
       if (aValue == null) return sortState.direction === 'asc' ? 1 : -1;
       if (bValue == null) return sortState.direction === 'asc' ? -1 : 1;
 
-      const isANumber = isNumber(aValue);
-      const isBNumber = isNumber(bValue);
-
       let result = 0;
 
-      if (isANumber && isBNumber) {
+      if (isNumber(aValue) && isNumber(bValue)) {
         result = Number(aValue) - Number(bValue) > 0 ? 1 : -1;
         return sortState.direction === 'asc' ? result : -result;
       }
@@ -75,9 +73,9 @@ export function useTableSort<T>(data: T[]) {
     sortedData,
     toggleSort,
   };
-}
+};
 
-export function useTableSearch<T>(data: T[]) {
+export const useTableSearch = <T>({ data }: { data: T[] }) => {
   const [searchState, setSearchState] = useState<SearchState>({});
 
   const updateSearch = (columnKey: string, value: string) => {
@@ -111,4 +109,4 @@ export function useTableSearch<T>(data: T[]) {
     filteredData,
     updateSearch,
   };
-}
+};

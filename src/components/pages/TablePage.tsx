@@ -65,7 +65,7 @@ const columns: TableColumn<DataItem>[] = [
   },
 ];
 
-export function TablePage() {
+export const TablePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedId = searchParams.get('selectedId');
@@ -102,4 +102,4 @@ export function TablePage() {
       </div>
     </div>
   );
-}
+};

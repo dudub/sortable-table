@@ -8,12 +8,13 @@ import './Table.css';
 export const Table = <T extends { id: string | number }>({
   data,
   columns,
-  onRowClick = () => {},
+  onRowClick,
   selectedRowId,
 }: TableProps<T>) => {
-  const { sortState, sortedData, toggleSort } = useTableSort(data);
-  const { searchState, filteredData, updateSearch } =
-    useTableSearch(sortedData);
+  const { sortState, sortedData, toggleSort } = useTableSort({ data });
+  const { searchState, filteredData, updateSearch } = useTableSearch({
+    data: sortedData,
+  });
 
   return (
     <table className="data-table">
@@ -35,11 +36,13 @@ export const Table = <T extends { id: string | number }>({
         {filteredData.map((row) => (
           <tr
             key={row.id}
-            onClick={() => onRowClick(row)}
+            onClick={onRowClick ? () => onRowClick(row) : undefined}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                onRowClick(row);
+                if (onRowClick) {
+                  onRowClick(row);
+                }
               }
             }}
             className={cn('table-row', {
