@@ -75,6 +75,9 @@ export const TablePage = () => {
 
   const onRowClick = (row: DataItem) => {
     setSelectedRowId(row.id);
+    // first navigation to update the query param
+    // second navigation to go to the details page
+    navigate(`/issues?selectedId=${row.id}`, {});
     navigate(`/issues/${row.id}`, { state: row });
   };
 
